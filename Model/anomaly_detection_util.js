@@ -1,9 +1,6 @@
+//#region Anomaly Detection Utilities
+
 class Point {
-  /**
-   *
-   * @param {number} x
-   * @param {number} y
-   */
   consrtuctor(x, y) {
     this.x = x;
     this.y = y;
@@ -11,11 +8,6 @@ class Point {
 }
 
 class Line {
-  /**
-   *
-   * @param {number} a
-   * @param {number} b
-   */
   consrtuctor(a, b) {
     this.a = a;
     this.b = b;
@@ -28,11 +20,12 @@ class Line {
 
 function avg(x, size) {
   let sum = 0;
-  for (let i = 0; i < size; sum += x[i], i++) {}
+  for (let i = 0; i < size; i++) {
+    sum += x[i];
+  }
   return sum / size;
 }
 
-// returns the variance of X and Y
 function vari(x, size) {
   let av = avg(x, size);
   let sum = 0;
@@ -42,7 +35,6 @@ function vari(x, size) {
   return sum / size - av * av;
 }
 
-// returns the covariance of X and Y
 function cov(x, y, size) {
   let sum = 0;
   for (let i = 0; i < size; i++) {
@@ -52,16 +44,16 @@ function cov(x, y, size) {
   return sum - avg(x, size) * avg(y, size);
 }
 
-// returns the Pearson correlation coefficient of X and Y
 function pearson(x, y, size) {
-  return cov(x, y, size) / (sqrt(vari(x, size)) * sqrt(vari(y, size)));
+  return (
+    cov(x, y, size) / (Math.sqrt(vari(x, size)) * Math.sqrt(vari(y, size)))
+  );
 }
 
-// performs a linear regression and returns the line equation
 function linear_reg(points, size) {
   let x = [];
   let y = [];
-  for (i = 0; i < size; i++) {
+  for (let i = 0; i < size; i++) {
     x[i] = points[i].x;
     y[i] = points[i].y;
   }
@@ -70,20 +62,19 @@ function linear_reg(points, size) {
   return new Line(a, b);
 }
 
-// returns the deviation between point p and the line equation of the points
 function dev(p, points, size) {
   let l = linear_reg(points, size);
   return dev(p, l);
 }
 
-// returns the deviation between point p and the line
 function dev(p, l) {
-  return abs(p.y - l.f(p.x));
+  return Math.abs(p.y - l.f(p.x));
 }
 
+//#endregion
+
 // Exports:
-exports.Point = Point;
-exports.Line = Line;
+//module.exports.Point = Point;
 
 // Improting:
 // const {Point, Line} = require(./anomaly_.._...js)
