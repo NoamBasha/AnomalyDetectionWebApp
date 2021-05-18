@@ -18,7 +18,9 @@ app.get('/', (req, res) => {
 })
 
 //Post Method for '/search' url
-app.post('/search', (req, res) => {
+app.post('/detect', (req, res) => {
+    // Extract train_csv_file, test_csv_file, algorithm_type
+    // let result / anomalies = model.detect()
     res.write('searching for ' + req.body.key + +':\n')
     let key = req.body.key
     if (req.files) {
