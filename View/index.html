@@ -10,13 +10,13 @@
     <br>
 <div style="color:rgb(255, 255, 255); font-family: 'Lucida Handwriting'; font-weight: bold;">Anomaly Detection Server</div>
 
-<form action="/search"  method="post" enctype="multipart/form-data" name="searchForm" target="result" >
+<form action="/detect"  method="POST" enctype="multipart/form-data" name="detectForm" target="result" >
     <table style="font-size: 20px; color: rgb(255, 255, 255); font-family: 'Garamond';"  class="center">
         <tr>
-            <td>Proper CSV file </td>
-            <td><input type="file" name="text_file"></td>
-            <td>Another CSV file </td>
-            <td><input type="file" name="text_file"></td>
+            <td>Train CSV file </td>
+            <td><input type="file" name="train_csv_file"></td>
+            <td>Test CSV file </td>
+            <td><input type="file" name="test_csv_file"></td>
             <td>
                 <input type="submit" value="Upload">
             </td>
@@ -27,10 +27,10 @@
 </form>
 <br>
 <br>
-<label style="color: rgb(255, 255, 255); font-size: 20px; font-family: 'Garamond';" for="algorithms">Choose a Algorithms:</label>
+<label style="color: rgb(255, 255, 255); font-size: 20px; font-family: 'Garamond';" for="algorithms">Choose an Algorithm:</label>
 <select style="font-family: 'Garamond';" name="algorithms" id="algorithms">
-  <option style="font-family: 'Garamond';" value="A regression-based algorithm">A regression-based algorithm</option>
-  <option style="font-family: 'Garamond';" value="Hybrid algorithm">Hybrid algorithm</option>
+  <option style="font-family: 'Garamond';" value="A regression-based algorithm">A Regression-Based Algorithm</option>
+  <option style="font-family: 'Garamond';" value="Hybrid algorithm">Hybrid Algorithm</option>
 </select>
 <br>
 <br>
