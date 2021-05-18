@@ -3,6 +3,11 @@
   <head>
     <meta charset="UTF-8" />
     <title>Anomaly Detection Server</title>
+    <!-- Bootstrap -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+    />
     <link rel="stylesheet" href="style.css" />
   </head>
 
@@ -12,6 +17,7 @@
     <div>Anomaly Detection Server</div>
 
     <form
+      id="detectForm"
       action="/detect"
       method="POST"
       enctype="multipart/form-data"
@@ -54,5 +60,12 @@
         </tr>
       </table>
     </form>
+    <!-- JQuery -->
+    <script
+      src="https://code.jquery.com/jquery-3.6.0.min.js"
+      integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+      crossorigin="anonymous"
+    ></script>
+    <script src="responseHandler.js"></script>
   </body>
 </html>

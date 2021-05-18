@@ -23,12 +23,16 @@ app.get("/", (req, res) => {
 app.post("/detect", (req, res) => {
   // Extract train_csv_file, test_csv_file, algorithm_type.
   // let result / anomalies = model.detect()
+  res.send("Hello World");
+  return;
   res.write("searching for " + req.body.key + +":\n");
   let key = req.body.key;
   if (req.files) {
     let file = req.files.text_file;
     let result = model.searchText(key, file.data.toString());
     res.write(result);
+    //res.json(result);
+    //res.write(JSON.stringify(result));
   }
   res.end();
 });

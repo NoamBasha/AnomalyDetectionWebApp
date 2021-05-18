@@ -1,23 +1,34 @@
-let Line = {
-		a,
-		let b,
-		Line():a(0),b(0){};
-		Line(float a, float b):a(a),b(b){}
-		float f(float x){
-			return a*x+b;
-		}
-	};
-	
-	class Point{
-	public:
-		 x,y;
-		Point( x,  y):x(x),y(y){}
-	};
-	
+class Point {
+  /**
+   *
+   * @param {number} x
+   * @param {number} y
+   */
+  consrtuctor(x, y) {
+    this.x = x;
+    this.y = y;
+  }
+}
+
+class Line {
+  /**
+   *
+   * @param {number} a
+   * @param {number} b
+   */
+  consrtuctor(a, b) {
+    this.a = a;
+    this.b = b;
+  }
+
+  f(x) {
+    return this.a * x + this.b;
+  }
+}
 
 function avg(x, size) {
   let sum = 0;
-  for (i = 0; i < size; sum += x[i], i++) {}
+  for (let i = 0; i < size; sum += x[i], i++) {}
   return sum / size;
 }
 
@@ -25,7 +36,7 @@ function avg(x, size) {
 function vari(x, size) {
   let av = avg(x, size);
   let sum = 0;
-  for (i = 0; i < size; i++) {
+  for (let i = 0; i < size; i++) {
     sum += x[i] * x[i];
   }
   return sum / size - av * av;
@@ -34,10 +45,10 @@ function vari(x, size) {
 // returns the covariance of X and Y
 function cov(x, y, size) {
   let sum = 0;
-  for (i = 0; i < size; i++) {
+  for (let i = 0; i < size; i++) {
     sum += x[i] * y[i];
   }
-  let sum /= size;
+  sum /= size;
   return sum - avg(x, size) * avg(y, size);
 }
 
@@ -48,20 +59,20 @@ function pearson(x, y, size) {
 
 // performs a linear regression and returns the line equation
 function linear_reg(points, size) {
-  let x
-	let y
+  let x = [];
+  let y = [];
   for (i = 0; i < size; i++) {
     x[i] = points[i].x;
     y[i] = points[i].y;
   }
-  a = cov(x, y, size) / vari(x, size);
-  b = avg(y, size) - a * avg(x, size);
-  return Line(a, b);
+  let a = cov(x, y, size) / vari(x, size);
+  let b = avg(y, size) - a * avg(x, size);
+  return new Line(a, b);
 }
 
 // returns the deviation between point p and the line equation of the points
 function dev(p, points, size) {
-  l = linear_reg(points, size);
+  let l = linear_reg(points, size);
   return dev(p, l);
 }
 
@@ -69,3 +80,11 @@ function dev(p, points, size) {
 function dev(p, l) {
   return abs(p.y - l.f(p.x));
 }
+
+// Exports:
+exports.Point = Point;
+exports.Line = Line;
+
+// Improting:
+// const {Point, Line} = require(./anomaly_.._...js)
+// as realtive path
