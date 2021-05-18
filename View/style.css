@@ -4,8 +4,39 @@ body {
 }
 div {
   font-size: 80px;
+  color: rgb(255, 255, 255);
+  font-family: "Lucida Handwriting";
+  font-weight: bold;
 }
+
 .center {
   margin-left: auto;
   margin-right: auto;
+}
+
+table {
+  font-size: 20px;
+  color: rgb(255, 255, 255);
+  font-family: "Garamond";
+}
+
+label {
+  color: rgb(255, 255, 255);
+  font-size: 20px;
+  font-family: "Garamond";
+}
+
+select {
+  font-family: "Garamond";
+}
+
+option {
+  font-family: "Garamond";
+}
+
+iframe {
+  background-color: aliceblue;
+  font-family: "Garamond";
+  width: "500";
+  height: "400";
 }

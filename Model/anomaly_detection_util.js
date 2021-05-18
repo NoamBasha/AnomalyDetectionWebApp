@@ -1,13 +1,30 @@
+let Line = {
+		a,
+		let b,
+		Line():a(0),b(0){};
+		Line(float a, float b):a(a),b(b){}
+		float f(float x){
+			return a*x+b;
+		}
+	};
+	
+	class Point{
+	public:
+		 x,y;
+		Point( x,  y):x(x),y(y){}
+	};
+	
+
 function avg(x, size) {
-  sum = 0;
+  let sum = 0;
   for (i = 0; i < size; sum += x[i], i++) {}
   return sum / size;
 }
 
 // returns the variance of X and Y
 function vari(x, size) {
-  av = avg(x, size);
-  sum = 0;
+  let av = avg(x, size);
+  let sum = 0;
   for (i = 0; i < size; i++) {
     sum += x[i] * x[i];
   }
@@ -16,11 +33,11 @@ function vari(x, size) {
 
 // returns the covariance of X and Y
 function cov(x, y, size) {
-  sum = 0;
+  let sum = 0;
   for (i = 0; i < size; i++) {
     sum += x[i] * y[i];
   }
-  sum /= size;
+  let sum /= size;
   return sum - avg(x, size) * avg(y, size);
 }
 
@@ -31,7 +48,8 @@ function pearson(x, y, size) {
 
 // performs a linear regression and returns the line equation
 function linear_reg(points, size) {
-  x[size], y[size];
+  let x
+	let y
   for (i = 0; i < size; i++) {
     x[i] = points[i].x;
     y[i] = points[i].y;

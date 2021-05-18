@@ -1,55 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
     <title>Anomaly Detection Server</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <br>
-    <br>
-<div style="color:rgb(255, 255, 255); font-family: 'Lucida Handwriting'; font-weight: bold;">Anomaly Detection Server</div>
+    <link rel="stylesheet" href="style.css" />
+  </head>
 
-<form action="/detect"  method="POST" enctype="multipart/form-data" name="detectForm" target="result" >
-    <table style="font-size: 20px; color: rgb(255, 255, 255); font-family: 'Garamond';"  class="center">
+  <body>
+    <br />
+    <br />
+    <div>Anomaly Detection Server</div>
+
+    <form
+      action="/detect"
+      method="POST"
+      enctype="multipart/form-data"
+      name="detectForm"
+      target="result"
+    >
+      <table class="center">
         <tr>
-            <td>Train CSV file </td>
-            <td><input type="file" name="train_csv_file" accept=".xlsx, .xls, .csv"></td>
-            <td>Test CSV file </td>
-            <td><input type="file" name="test_csv_file" accept=".xlsx, .xls, .csv"></td>
-            <td>
-                <input type="submit" value="Detect">
-            </td>
+          <td>Train CSV file</td>
+          <td>
+            <input
+              type="file"
+              name="train_csv_file"
+              accept=".xlsx, .xls, .csv"
+            />
+          </td>
+          <td>Test CSV file</td>
+          <td>
+            <input
+              type="file"
+              name="test_csv_file"
+              accept=".xlsx, .xls, .csv"
+            />
+          </td>
+          <td><input type="submit" value="Detect" /></td>
         </tr>
-        <br>
-    </table>
-
-    <br>
-<br>
-<label style="color: rgb(255, 255, 255); font-size: 20px; font-family: 'Garamond';" for="algorithms">Choose an Algorithm:</label>
-<select style="font-family: 'Garamond';" name="algorithms" id="algorithms">
-  <option style="font-family: 'Garamond';" value="A regression-based algorithm">A Regression-Based Algorithm</option>
-  <option style="font-family: 'Garamond';" value="Hybrid algorithm">Hybrid Algorithm</option>
-</select>
-<br>
-<br>
-<br>
-<table class="center">
-    <tr>
-        <td style="background-color: aliceblue; font-family: 'Garamond';">
-            <iframe name="result" width="500" height="400"></iframe>
-        </td>
-        <td style="background-color: aliceblue; font-family: 'Garamond';"></tdstyle>
-            <iframe name="result" width="500" height="400"></iframe>
-        </td>
-    </tr>
-</table>
-<br>
-<br>
-<br>
-   
-</form>
-
-
-</body>
+        <br />
+        <tr>
+          <td><label for="algorithms">Choose an Algorithm:</label></td>
+          <td>
+            <select name="algorithms" id="algorithms">
+              <option value="regression">A Regression-BasedAlgorithm</option>
+              <option value="hybrid">Hybrid Algorithm</option>
+            </select>
+          </td>
+        </tr>
+        <br />
+        <tr>
+          <td><iframe name="result"></iframe></td>
+        </tr>
+      </table>
+    </form>
+  </body>
 </html>
