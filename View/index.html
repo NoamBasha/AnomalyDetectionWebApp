@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Anomaly Detection Server</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <br>
+    <br>
+<div style="color:rgb(255, 255, 255); font-family: 'Lucida Handwriting'; font-weight: bold;">Anomaly Detection Server</div>
+
+<form action="/search"  method="post" enctype="multipart/form-data" name="searchForm" target="result" >
+    <table style="font-size: 20px; color: rgb(255, 255, 255); font-family: 'Garamond';"  class="center">
+        <tr>
+            <td>Proper CSV file </td>
+            <td><input type="file" name="text_file"></td>
+            <td>Another CSV file </td>
+            <td><input type="file" name="text_file"></td>
+            <td>
+                <input type="submit" value="Upload">
+            </td>
+        </tr>
+        <br>
+    </table>
+   
+</form>
+<br>
+<br>
+<label style="color: rgb(255, 255, 255); font-size: 20px; font-family: 'Garamond';" for="algorithms">Choose a Algorithms:</label>
+<select style="font-family: 'Garamond';" name="algorithms" id="algorithms">
+  <option style="font-family: 'Garamond';" value="A regression-based algorithm">A regression-based algorithm</option>
+  <option style="font-family: 'Garamond';" value="Hybrid algorithm">Hybrid algorithm</option>
+</select>
+<br>
+<br>
+<br>
+<table class="center">
+    <tr>
+        <td style="background-color: aliceblue; font-family: 'Garamond';">
+            <iframe name="result" width="500" height="400"></iframe>
+        </td>
+        <td style="background-color: aliceblue; font-family: 'Garamond';"></tdstyle>
+            <iframe name="result" width="500" height="400"></iframe>
+        </td>
+    </tr>
+</table>
+<br>
+<br>
+<br>
+
+</body>
+</html>
