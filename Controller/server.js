@@ -22,7 +22,12 @@ app.get("/", (req, res) => {
 //Post Method for '/search' url
 app.post("/detect", (req, res) => {
   // Extract train_csv_file, test_csv_file, algorithm_type.
-  // let result / anomalies = model.detect()
+
+  // creating new anomalyDetector(train_csv_file, test_csv_file, algorithm_type);
+  // let result / anomalies = anomalyDetector.detectAnomalies()
+
+  // anomalies -> JSON
+
   res.send("Hello World");
   return;
   res.write("searching for " + req.body.key + +":\n");
