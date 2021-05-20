@@ -22,12 +22,6 @@ div {
   grid-gap: 50px;
 }
 
-.item1 { grid-area: header; }
-.item2 { grid-area: menu; }
-.item3 { grid-area: main; }
-.item4 { grid-area: right; }
-.item5 { grid-area: footer; }
-
 table {
   font-size: 20px;
   color: rgb(255, 255, 255);
@@ -49,7 +43,7 @@ option {
 }
 
 iframe {
-  background-color: aliceblue;
+  background-color: transparent;
   font-family: "Garamond";
   width: "500";
   height: "400";

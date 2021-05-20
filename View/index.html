@@ -24,18 +24,21 @@
     .item1 { grid-area: header; }
     .item2 { grid-area: menu; }
     .item3 { grid-area: main1; }
-    .item4 { grid-area: main2; }
-    .item5 { grid-area: main3; }
-    .item6 { grid-area: main4; }
+    .item4 { grid-area: right1; }
+    .item5 { grid-area: main2; }
+    .item6 { grid-area: right2; }
+    .item7 { grid-area: main3; }
+    .item8 { grid-area: right3; }
+    .item9 { grid-area: main4; }
 
     
     .grid-container {
       display: grid;
       grid-template-areas:
         'header header header header header header'
-        'main1 main1 menu menu menu menu'
-        'main2 main2 menu menu menu menu'
-        'main3 main3 menu menu menu menu'
+        'main1 right1 menu menu menu menu'
+        'main2 right2 menu menu menu menu'
+        'main3 right3 menu menu menu menu'
         'main4 main4 menu menu menu menu';
       grid-gap: 5%;
       background-color: transparent;
@@ -52,26 +55,51 @@
 
 
 <div class="grid-container">
-    <div class="item1">Anomaly Detection Server</div>
-    <div class="item2"><td><iframe name="result"></iframe></td></div>
-    <div class="item3">Train CSV file  <input
-        type="file"
-        name="train_csv_file"
-        accept=".xlsx, .xls, .csv"
-      /></div>  
-    <div class="item4">Test CSV file  <input
-        type="file"
-        name="test_csv_file"
-        accept=".xlsx, .xls, .csv"
-      /></div>
-    <div class="item5"><label for="algorithms">Choose an Algorithm:</label></td>
-        <td>
-          <select name="algorithms" id="algorithms">
-            <option value="regression">A Regression-BasedAlgorithm</option>
-            <option value="hybrid">Hybrid Algorithm</option>
-          </select></div>
-    <div class="item6"> <td><button type="submit" class="btn btn-info">Detect</button></td></div>
+  <!-- Anomaly Title -->
+  <div class="item1">
+    <h1>Anomaly Detection Server <span class="badge"></h1>
   </div>
+
+    <!-- the result bord-->
+    <div class="item2"><iframe name="result"></iframe></div>
+
+    <!-- Train CSV file title -->
+    <div class="item3"><h2><small>Train CSV file</small></h2></div>
+
+    <!-- Train CSV file button -->
+    <div class="item4"><button type="submit" class="btn btn-info">
+      <input
+      type="file"
+      name="test_csv_file"
+      accept=".xlsx, .xls, .csv"
+      ></input></button></div>
+
+    <!-- text CSV file title -->
+    <div class="item5"><h2><small>Test CSV file</small></h2></div>
+
+    <!-- text CSV file button -->
+      <div class="item6"><button type="submit" class="btn btn-info">
+      <input
+      type="file"
+      name="test_csv_file"
+      accept=".xlsx, .xls, .csv"
+      ></input></button></div>
+
+    <!-- algorithm title -->
+    <div class="item7"><h2><small>Choose an Algorithm:</small></h2></div>
+       
+    <!-- algorithm button -->
+    <div class="item8"><button type="submit" class="btn btn-info">
+      <select name="algorithms" id="algorithms">
+        <option value="regression">A Regression-BasedAlgorithm</option>
+        <option value="hybrid">Hybrid Algorithm</option>
+      </select>
+      </button>
+    </div>
+
+    <!-- detect button -->
+    <div class="item9"><button type="button" class="btn btn-outline-info" 
+      class="btn btn-primary btn-lg btn-block">Detect</button></div>
 
     <!-- JQuery -->
     <script
