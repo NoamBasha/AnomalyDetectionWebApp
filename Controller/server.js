@@ -22,6 +22,9 @@ app.get("/", (req, res) => {
 //Post Method for '/search' url
 app.post("/detect", (req, res) => {
   // Extract train_csv_file, test_csv_file, algorithm_type.
+  let train = req.files.train_csv_file.data.toString();
+  let test = req.files.test_csv_file.data.toString();
+  let alg_type = req.body.algorithms;
 
   /*
   let anomalies = anomalyDetector.detectAnomalies(
@@ -33,7 +36,7 @@ app.post("/detect", (req, res) => {
 
   // anomalies -> JSON
 
-  res.send("Hello World");
+  res.send(train);
   return;
   res.write("searching for " + req.body.key + +":\n");
   let key = req.body.key;
