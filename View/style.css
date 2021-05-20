@@ -1,11 +1,9 @@
 body {
-  background-color: lightblue;
   text-align: center;
 }
 
 div {
   font-size: 80px;
-  color: rgb(255, 255, 255);
   font-family: "Lucida Handwriting";
   font-stretch: ultra-expanded;
   font-weight: bold;
@@ -17,6 +15,8 @@ div {
 }
 
 .grid-container {
+  background-image: url("../images/shutterstock_8.jpg");
+  height: 100vh;
   display: grid;
   grid-gap: 50px;
 }
@@ -36,7 +36,7 @@ option {
 }
 
 iframe {
-  background-color: lightblue;
+  background-color: transparent;
   font-family: "Garamond";
   width: "500";
   height: "400";
@@ -72,6 +72,7 @@ iframe {
 
 .grid-container {
   display: grid;
+  background-image: url("../images/shutterstock_8.jpg");
   grid-template-areas:
     "header header header header header header"
     "main1 right1 menu menu menu menu"
@@ -84,7 +85,6 @@ iframe {
 }
 
 .grid-container > div {
-  background-color: lightblue;
   text-align: center;
   padding: 10px 0;
   font-size: 10px;

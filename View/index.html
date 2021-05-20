@@ -9,7 +9,19 @@
     <link rel="stylesheet" href="style.css" />
   </head>
 
+  
+
   <body>
+        <!-- Background image -->
+        <div
+        class="bg-image d-flex justify-content-center align-items-center"
+        style="
+          background-image: url('https://www.bdo.co.il/getmedia/0cb17020-f560-4d24-82f2-e8202a07654a/shutterstock_8.jpg.aspx');
+          height: 100vh;
+        "
+      >
+<!-- Background image -->
+    
     <form id="detectForm" action="/detect" method="POST" enctype="multipart/form-data" name="detectForm"
       target="result">
 
@@ -64,8 +76,9 @@
 
         <!-- detect button -->
         <div class="item9">
-          <button width=500 type="button" class="btn btn-outline-info" >Detect</button>
+          <button type="button" class="btn btn-outline-info" class="btn-group" style="width:100%">Detect</button>
         </div>
+      </div>
 
         <!-- JQuery -->
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"
