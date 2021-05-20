@@ -7,13 +7,26 @@ div {
   font-size: 80px;
   color: rgb(255, 255, 255);
   font-family: "Lucida Handwriting";
+  font-stretch: ultra-expanded;
   font-weight: bold;
 }
+
 
 .center {
   margin-left: auto;
   margin-right: auto;
 }
+
+.grid-container {
+  display: grid;
+  grid-gap: 50px;
+}
+
+.item1 { grid-area: header; }
+.item2 { grid-area: menu; }
+.item3 { grid-area: main; }
+.item4 { grid-area: right; }
+.item5 { grid-area: footer; }
 
 table {
   font-size: 20px;

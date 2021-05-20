@@ -12,11 +12,7 @@
   </head>
 
   <body>
-    <br />
-    <br />
-    <div>Anomaly Detection Server</div>
-
-    <form
+  <form
       id="detectForm"
       action="/detect"
       method="POST"
@@ -24,48 +20,66 @@
       name="detectForm"
       target="result"
     >
-      <table class="center">
-        <tr>
-          <td>Train CSV file</td>
-          <td>
-            <input
-              type="file"
-              name="train_csv_file"
-              accept=".xlsx, .xls, .csv"
-            />
-          </td>
-          <td>Test CSV file</td>
-          <td>
-            <input
-              type="file"
-              name="test_csv_file"
-              accept=".xlsx, .xls, .csv"
-            />
-          </td>
-          <td><button type="submit" class="btn btn-info">Detect</button></td>
-        </tr>
-        <br />
-        <tr>
-          <td><label for="algorithms">Choose an Algorithm:</label></td>
-          <td>
-            <select name="algorithms" id="algorithms">
-              <option value="regression">A Regression-BasedAlgorithm</option>
-              <option value="hybrid">Hybrid Algorithm</option>
-            </select>
-          </td>
-        </tr>
-        <br />
-        <tr>
-          <td><iframe name="result"></iframe></td>
-        </tr>
-      </table>
-    </form>
+    <style>
+    .item1 { grid-area: header; }
+    .item2 { grid-area: menu; }
+    .item3 { grid-area: main1; }
+    .item4 { grid-area: main2; }
+    .item5 { grid-area: main3; }
+    .item6 { grid-area: main4; }
+
+    
+    .grid-container {
+      display: grid;
+      grid-template-areas:
+        'header header header header header header'
+        'main1 main1 menu menu menu menu'
+        'main2 main2 menu menu menu menu'
+        'main3 main3 menu menu menu menu'
+        'main4 main4 menu menu menu menu';
+      grid-gap: 5%;
+      background-color: transparent;
+      padding: 2px;
+    }
+    
+    .grid-container > div {
+     background-color: lightblue;
+      text-align: center;
+      padding: 10px 0;
+      font-size: 10px;
+    }
+    </style>
+
+
+<div class="grid-container">
+    <div class="item1">Anomaly Detection Server</div>
+    <div class="item2"><td><iframe name="result"></iframe></td></div>
+    <div class="item3">Train CSV file  <input
+        type="file"
+        name="train_csv_file"
+        accept=".xlsx, .xls, .csv"
+      /></div>  
+    <div class="item4">Test CSV file  <input
+        type="file"
+        name="test_csv_file"
+        accept=".xlsx, .xls, .csv"
+      /></div>
+    <div class="item5"><label for="algorithms">Choose an Algorithm:</label></td>
+        <td>
+          <select name="algorithms" id="algorithms">
+            <option value="regression">A Regression-BasedAlgorithm</option>
+            <option value="hybrid">Hybrid Algorithm</option>
+          </select></div>
+    <div class="item6"> <td><button type="submit" class="btn btn-info">Detect</button></td></div>
+  </div>
+
     <!-- JQuery -->
     <script
       src="https://code.jquery.com/jquery-3.6.0.min.js"
       integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
       crossorigin="anonymous"
     ></script>
+    
     <script src="responseHandler.js"></script>
   </body>
 </html>
