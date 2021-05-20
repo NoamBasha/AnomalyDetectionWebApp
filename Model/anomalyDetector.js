@@ -142,14 +142,14 @@ class anomalyDetector {
     }
   }
 
-  /*
   detectAnomalies(train_csv_path, test_csv_path, alg_type) {
     this.learnNormal(train_csv_path, alg_type);
-    this.detect(test_csv_path,alg_type);
+    this.detect(test_csv_path, alg_type);
     return this.anomalies;
   }
-  */
 }
+
+//#region Anomaly Detection Utilities
 
 class Point {
   consrtuctor(x, y) {
@@ -181,8 +181,6 @@ function dist(a, b) {
   let y2 = (a.y - b.y) * (a.y - b.y);
   return sqrt(x2 + y2);
 }
-
-//#region Anomaly Detection Utilities
 
 function avg(x, size) {
   let sum = 0;
@@ -238,3 +236,5 @@ function dev(p, l) {
 }
 
 //#endregion
+
+module.exports.detectAnomalies = detectAnomalies;
