@@ -1,113 +1,79 @@
 <!DOCTYPE html>
 <html lang="en">
+
   <head>
     <meta charset="UTF-8" />
     <title>Anomaly Detection Server</title>
     <!-- Bootstrap -->
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
-    />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="style.css" />
   </head>
 
   <body>
-  <form
-      id="detectForm"
-      action="/detect"
-      method="POST"
-      enctype="multipart/form-data"
-      name="detectForm"
-      target="result"
-    >
-    <style>
-    .item1 { grid-area: header; }
-    .item2 { grid-area: menu; }
-    .item3 { grid-area: main1; }
-    .item4 { grid-area: right1; }
-    .item5 { grid-area: main2; }
-    .item6 { grid-area: right2; }
-    .item7 { grid-area: main3; }
-    .item8 { grid-area: right3; }
-    .item9 { grid-area: main4; }
+    <form id="detectForm" action="/detect" method="POST" enctype="multipart/form-data" name="detectForm"
+      target="result">
 
-    
-    .grid-container {
-      display: grid;
-      grid-template-areas:
-        'header header header header header header'
-        'main1 right1 menu menu menu menu'
-        'main2 right2 menu menu menu menu'
-        'main3 right3 menu menu menu menu'
-        'main4 main4 menu menu menu menu';
-      grid-gap: 5%;
-      background-color: transparent;
-      padding: 2px;
-    }
-    
-    .grid-container > div {
-     background-color: lightblue;
-      text-align: center;
-      padding: 10px 0;
-      font-size: 10px;
-    }
-    </style>
+      <div class="grid-container">
+        <!-- Anomaly Title -->
+        <div class="item1">
+          <h1>Anomaly Detection Server</h1>
+        </div>
 
+        <!-- the result frame -->
+        <div class="item2">
+          <iframe name="result"></iframe>
+        </div>
 
-<div class="grid-container">
-  <!-- Anomaly Title -->
-  <div class="item1">
-    <h1>Anomaly Detection Server <span class="badge"></h1>
-  </div>
+        <!-- Train CSV file title -->
+        <div class="item3">
+          <h3>Train CSV file</h3>
+        </div>
 
-    <!-- the result bord-->
-    <div class="item2"><iframe name="result"></iframe></div>
+        <!-- Train CSV file button -->
+        <div class="item4">
+          <button type="submit" class="btn btn-info">
+            <input type="file" name="train_csv_file" accept=".xlsx, .xls, .csv"></input>
+          </button>
+        </div>
 
-    <!-- Train CSV file title -->
-    <div class="item3"><h2><small>Train CSV file</small></h2></div>
+        <!-- text CSV file title -->
+        <div class="item5">
+          <h3>Test CSV file</h3>
+        </div>
 
-    <!-- Train CSV file button -->
-    <div class="item4"><button type="submit" class="btn btn-info">
-      <input
-      type="file"
-      name="test_csv_file"
-      accept=".xlsx, .xls, .csv"
-      ></input></button></div>
+        <!-- text CSV file button -->
+        <div class="item6">
+          <button type="submit" class="btn btn-info">
+            <input type="file" name="test_csv_file" accept=".xlsx, .xls, .csv"></input>
+          </button>
+        </div>
 
-    <!-- text CSV file title -->
-    <div class="item5"><h2><small>Test CSV file</small></h2></div>
+        <!-- algorithm title -->
+        <div class="item7">
+          <h3>Choose an Algorithm</h3>
+        </div>
 
-    <!-- text CSV file button -->
-      <div class="item6"><button type="submit" class="btn btn-info">
-      <input
-      type="file"
-      name="test_csv_file"
-      accept=".xlsx, .xls, .csv"
-      ></input></button></div>
+        <!-- algorithm button -->
+        <div class="item8">
+          <button type="submit" class="btn btn-info">
+            <select name="algorithms" id="algorithms">
+              <option value="regression">A Regression-BasedAlgorithm</option>
+              <option value="hybrid">Hybrid Algorithm</option>
+            </select>
+          </button>
+        </div>
 
-    <!-- algorithm title -->
-    <div class="item7"><h2><small>Choose an Algorithm:</small></h2></div>
-       
-    <!-- algorithm button -->
-    <div class="item8"><button type="submit" class="btn btn-info">
-      <select name="algorithms" id="algorithms">
-        <option value="regression">A Regression-BasedAlgorithm</option>
-        <option value="hybrid">Hybrid Algorithm</option>
-      </select>
-      </button>
-    </div>
+        <!-- detect button -->
+        <div class="item9">
+          <button type="button" class="btn btn-outline-info" class="btn btn-primary btn-lg btn-block">Detect</button>
+        </div>
 
-    <!-- detect button -->
-    <div class="item9"><button type="button" class="btn btn-outline-info" 
-      class="btn btn-primary btn-lg btn-block">Detect</button></div>
+        <!-- JQuery -->
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+          integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 
-    <!-- JQuery -->
-    <script
-      src="https://code.jquery.com/jquery-3.6.0.min.js"
-      integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
-      crossorigin="anonymous"
-    ></script>
-    
-    <script src="responseHandler.js"></script>
+        <script src="responseHandler.js"></script>
+      </div>
+    </form>
   </body>
 </html>
