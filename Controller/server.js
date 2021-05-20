@@ -1,7 +1,6 @@
 //imports modules
 const express = require("express");
 const fileUpload = require("express-fileupload");
-const model = require("../Model/SearchInFile");
 const app = express();
 const anomalyDetector = require("../Model/anomalyDetector");
 
@@ -24,11 +23,14 @@ app.get("/", (req, res) => {
 app.post("/detect", (req, res) => {
   // Extract train_csv_file, test_csv_file, algorithm_type.
 
+  /*
   let anomalies = anomalyDetector.detectAnomalies(
     train_csv_file,
     test_csv_file,
     algorithm_type
   );
+  */
+
   // anomalies -> JSON
 
   res.send("Hello World");

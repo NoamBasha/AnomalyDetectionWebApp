@@ -237,4 +237,4 @@ function dev(p, l) {
 
 //#endregion
 
-module.exports.detectAnomalies = detectAnomalies;
+module.exports = anomalyDetector;
