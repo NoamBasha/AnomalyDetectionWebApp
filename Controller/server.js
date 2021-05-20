@@ -1,10 +1,9 @@
-//imports modules
+// Import Modules:
 const express = require("express");
 const fileUpload = require("express-fileupload");
 const app = express();
 const anomalyDetector = require("../Model/anomalyDetector");
 
-//define app uses
 app.use(
   express.urlencoded({
     extended: false,
@@ -14,29 +13,25 @@ app.use(
 app.use(fileUpload({}));
 app.use(express.static("../View"));
 
-//Get Method for '/' url
+//Get Method for '/'
 app.get("/", (req, res) => {
   res.sendFile("index.html");
 });
 
-//Post Method for '/search' url
+//Post Method for '/detect'
 app.post("/detect", (req, res) => {
-  // Extract train_csv_file, test_csv_file, algorithm_type.
+  // Extract train_csv_file, test_csv_file, alg_type.
   let train = req.files.train_csv_file.data.toString();
   let test = req.files.test_csv_file.data.toString();
   let alg_type = req.body.algorithms;
 
-  /*
-  let anomalies = anomalyDetector.detectAnomalies(
-    train_csv_file,
-    test_csv_file,
-    algorithm_type
-  );
-  */
+  //let adt = new anomalyDetector.anomalyDetector();
+  let ad = new anomalyDetector();
+  let anomalies = ad.detectAnomalies(train, test, alg_type);
 
   // anomalies -> JSON
 
-  res.send(train);
+  res.send(anomalies);
   return;
   res.write("searching for " + req.body.key + +":\n");
   let key = req.body.key;

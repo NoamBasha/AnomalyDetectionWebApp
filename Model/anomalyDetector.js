@@ -9,16 +9,20 @@ class anomalyDetector {
     const lines = csv.split("\n");
     const atts = lines[0].split(",");
     let ts = [];
-    for (let i = 0; i < atts.length(); i++) {
+    for (let i = 0; i < atts.length; i++) {
       ts[i] = [];
     }
-    for (let i = 1; i < lines.length(); i++) {
+
+    // TODO -1?
+
+    for (let i = 1; i < lines.length - 1; i++) {
       let line = lines[i].split(",");
-      for (let j = 0; j < atts.length(); j++) {
+      for (let j = 0; j < atts.length; j++) {
         // i-1 so we won't include the attributes
-        ts[j][i - 1] = line[j];
+        ts[j][i - 1] = line[j]; // .replace(/\r/g, "")
       }
     }
+
     return ts;
   }
 
@@ -42,8 +46,8 @@ class anomalyDetector {
   }
 
   learnRegressionHelper(ts, p, f1, f2, ps) {
-    if (p > threshold) {
-      let len = ts[0].length();
+    if (p > this.threshold) {
+      let len = ts[0].length;
       let l = linear_reg(ps, len);
       let c = {
         feature1: f1,
@@ -75,15 +79,16 @@ class anomalyDetector {
   learnNormal(train, alg_type) {
     const lines = train.split("\n");
     const atts = lines[0].split(",");
+
     let ts = this.parseCSV(train);
-    const len = ts[0].length();
+    const len = ts[0].length;
 
     // For each attribute find the most correlative attribute to it:
-    for (let i = 0; i < atts.length(); i++) {
+    for (let i = 0; i < atts.length; i++) {
       let f1 = atts[i];
       let max = 0;
       let jmax = 0;
-      for (let j = i + 1; j < atts.size(); j++) {
+      for (let j = i + 1; j < atts.length; j++) {
         let p = Math.abs(pearson(ts[i], ts[j], len));
         if (p > max) {
           max = p;
@@ -122,14 +127,14 @@ class anomalyDetector {
     const lines = test.split("\n");
     const atts = lines[0].split(",");
     let ts = this.parseCSV(test);
-    const len = ts[0].length();
+    const len = ts[0].length;
 
     // for each cf in correalterdFeatures:
-    for (let i = 0; i < this.correlatedFeatures.length(); i++) {
+    for (let i = 0; i < this.correlatedFeatures.length; i++) {
       let curCF = this.correlatedFeatures[i];
       let x = atts.indexOf(curCF.feature1);
       let y = atts.indexOf(curCF.feature2);
-      for (let j = 0; j < this.correlatedFeatures.length(); j++) {
+      for (let j = 0; j < this.correlatedFeatures.length; j++) {
         if (this.isAnomalous(x[j], y[j], curCF, alg_type)) {
           let s = curCF.feature1 + "-" + curCF.feature2;
           let a = {
@@ -142,9 +147,9 @@ class anomalyDetector {
     }
   }
 
-  detectAnomalies(train_csv_path, test_csv_path, alg_type) {
-    this.learnNormal(train_csv_path, alg_type);
-    this.detect(test_csv_path, alg_type);
+  detectAnomalies(train, test, alg_type) {
+    this.learnNormal(train, alg_type);
+    this.detect(test, alg_type);
     return this.anomalies;
   }
 }
@@ -185,9 +190,10 @@ function dist(a, b) {
 function avg(x, size) {
   let sum = 0;
   for (let i = 0; i < size; i++) {
-    sum += x[i];
+    sum += Number(x[i]);
   }
-  return sum / size;
+  let toRet = sum / size;
+  return toRet;
 }
 
 function vari(x, size) {
@@ -196,7 +202,8 @@ function vari(x, size) {
   for (let i = 0; i < size; i++) {
     sum += x[i] * x[i];
   }
-  return sum / size - av * av;
+  let toRet = sum / size - av * av;
+  return toRet;
 }
 
 function cov(x, y, size) {
@@ -205,13 +212,18 @@ function cov(x, y, size) {
     sum += x[i] * y[i];
   }
   sum /= size;
-  return sum - avg(x, size) * avg(y, size);
+
+  let toRet = sum - avg(x, size) * avg(y, size);
+
+  return toRet;
 }
 
 function pearson(x, y, size) {
-  return (
-    cov(x, y, size) / (Math.sqrt(vari(x, size)) * Math.sqrt(vari(y, size)))
-  );
+  let a = cov(x, y, size);
+  let b = Math.sqrt(vari(x, size)) * Math.sqrt(vari(y, size));
+  let toRet = a / b;
+
+  return toRet;
 }
 
 function linear_reg(points, size) {
