@@ -20,6 +20,7 @@ app.get("/", (req, res) => {
 
 //Post Method for '/detect'
 app.post("/detect", (req, res) => {
+  console.log("Detecting...");
   // Extract train_csv_file, test_csv_file, alg_type.
   let train = req.files.train_csv_file.data.toString();
   let test = req.files.test_csv_file.data.toString();
@@ -28,6 +29,8 @@ app.post("/detect", (req, res) => {
   //let adt = new anomalyDetector.anomalyDetector();
   let ad = new anomalyDetector();
   let anomalies = ad.detectAnomalies(train, test, alg_type);
+
+  console.log(anomalies);
 
   // anomalies -> JSON
 
