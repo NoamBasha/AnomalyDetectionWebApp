@@ -15,8 +15,6 @@ class anomalyDetector {
       ts[i] = [];
     }
 
-    // TODO -1?
-
     for (let i = 1; i < lines.length - 1; i++) {
       let line = lines[i].split(",");
       for (let j = 0; j < atts.length; j++) {
@@ -30,7 +28,6 @@ class anomalyDetector {
 
   toPoints(x, y) {
     let ps = [];
-
     for (let i = 0; i < x.length; i++) {
       ps[i] = new Point(x[i], y[i]);
     }
@@ -67,11 +64,6 @@ class anomalyDetector {
     if (p > this.threshold) {
       this.learnRegressionHelper(ts, p, f1, f2, ps);
     } else if (p > 0.5) {
-      let psGood = [
-        { x: 0, y: 0 },
-        { x: 10, y: 10 },
-        { x: 20, y: 20 },
-      ];
       let psCircle = [];
       for (let i = 0; i < ps.length; i++) {
         psCircle[i] = {
@@ -113,7 +105,6 @@ class anomalyDetector {
       let f2 = atts[jmax];
       let ps = this.toPoints(ts[i], ts[jmax]);
 
-      // TODO send "regression" and "hybrid" from contorller.
       if (alg_type.localeCompare("regression") == 0) {
         this.learnRegressionHelper(ts, max, f1, f2, ps);
       }
@@ -189,13 +180,6 @@ class Line {
   }
 }
 
-class Circle {
-  constructor(center, radius) {
-    this.center = center;
-    this.radius = radius;
-  }
-}
-
 function dist(a, b) {
   let x2 = (a.x - b.x) * (a.x - b.x);
   let y2 = (a.y - b.y) * (a.y - b.y);
@@ -227,9 +211,7 @@ function cov(x, y, size) {
     sum += x[i] * y[i];
   }
   sum /= size;
-
   let toRet = sum - avg(x, size) * avg(y, size);
-
   return toRet;
 }
 
@@ -237,7 +219,6 @@ function pearson(x, y, size) {
   let a = cov(x, y, size);
   let b = Math.sqrt(vari(x, size)) * Math.sqrt(vari(y, size));
   let toRet = a / b;
-
   return toRet;
 }
 
