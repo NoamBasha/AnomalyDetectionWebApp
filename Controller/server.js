@@ -20,32 +20,17 @@ app.get("/", (req, res) => {
 
 //Post Method for '/detect'
 app.post("/detect", (req, res) => {
-  console.log("Detecting...");
-  // Extract train_csv_file, test_csv_file, alg_type.
+  // Extracting train_csv_file, test_csv_file, alg_type.
   let train = req.files.train_csv_file.data.toString();
   let test = req.files.test_csv_file.data.toString();
   let alg_type = req.body.algorithms;
 
-  //let adt = new anomalyDetector.anomalyDetector();
+  // Detecting anomalies:
   let ad = new anomalyDetector();
   let anomalies = ad.detectAnomalies(train, test, alg_type);
 
-  console.log(anomalies);
-
   // anomalies -> JSON
-
-  res.send(anomalies);
-  return;
-  res.write("searching for " + req.body.key + +":\n");
-  let key = req.body.key;
-  if (req.files) {
-    let file = req.files.text_file;
-    let result = model.searchText(key, file.data.toString());
-    res.write(result);
-    //res.json(result);
-    //res.write(JSON.stringify(result));
-  }
-  res.end();
+  res.send(JSON.stringify(anomalies));
 });
 
 //starting server on port 8080

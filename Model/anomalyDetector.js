@@ -1,3 +1,5 @@
+const enclosingCircle = require("smallest-enclosing-circle");
+
 class anomalyDetector {
   constructor() {
     this.threshold = 0.9;
@@ -19,7 +21,7 @@ class anomalyDetector {
       let line = lines[i].split(",");
       for (let j = 0; j < atts.length; j++) {
         // i-1 so we won't include the attributes
-        ts[j][i - 1] = line[j]; // .replace(/\r/g, "")
+        ts[j][i - 1] = line[j].replace(/\r/g, ""); // replacing \r with "".
       }
     }
 
@@ -28,6 +30,7 @@ class anomalyDetector {
 
   toPoints(x, y) {
     let ps = [];
+
     for (let i = 0; i < x.length; i++) {
       ps[i] = new Point(x[i], y[i]);
     }
@@ -61,27 +64,39 @@ class anomalyDetector {
   }
 
   learnHybridHelper(ts, p, f1, f2, ps) {
-    if (p > 0.5 && p < this.threshold) {
-      const enclosingCircle = require("smallest-enclosing-circle");
-      var cl = enclosingCircle(ps);
+    if (p > this.threshold) {
+      this.learnRegressionHelper(ts, p, f1, f2, ps);
+    } else if (p > 0.5) {
+      let psGood = [
+        { x: 0, y: 0 },
+        { x: 10, y: 10 },
+        { x: 20, y: 20 },
+      ];
+      let psCircle = [];
+      for (let i = 0; i < ps.length; i++) {
+        psCircle[i] = {
+          x: Number(ps[i].x),
+          y: Number(ps[i].y),
+        };
+      }
+      let cl = enclosingCircle(psCircle);
       let c = {
         feature1: f1,
         feature2: f2,
         correlation: p,
-        threshold: cl.radius * 1.1,
-        cx: cl.center.x,
-        cy: cl.center.y,
+        threshold: cl.r * 1.1,
+        cx: cl.x,
+        cy: cl.y,
       };
       this.correlatedFeatures.push(c);
     }
   }
 
   learnNormal(train, alg_type) {
-    const lines = train.split("\n");
-    const atts = lines[0].split(",");
-
+    let lines = train.split("\n");
+    let atts = lines[0].split(",");
     let ts = this.parseCSV(train);
-    const len = ts[0].length;
+    let len = ts[0].length;
 
     // For each attribute find the most correlative attribute to it:
     for (let i = 0; i < atts.length; i++) {
@@ -116,26 +131,26 @@ class anomalyDetector {
       return (
         (cf.correlation >= this.threshold &&
           Math.abs(y - cf.lin_reg.f(x)) > cf.threshold) ||
-        (cf.correlation > 0.5 &&
+        (cf.correlation >= 0.5 &&
           cf.correlation < this.threshold &&
-          dist(new Point(cf.cx, cf.cy), new Point(x, y) > cf.threshold))
+          dist(new Point(cf.cx, cf.cy), new Point(x, y)) > cf.threshold)
       );
     }
   }
 
   detect(test, alg_type) {
-    const lines = test.split("\n");
-    const atts = lines[0].split(",");
+    let lines = test.split("\n");
+    let atts = lines[0].split(",");
     let ts = this.parseCSV(test);
-    const len = ts[0].length;
+    let len = ts[0].length;
 
     // for each cf in correalterdFeatures:
     for (let i = 0; i < this.correlatedFeatures.length; i++) {
       let curCF = this.correlatedFeatures[i];
-      let x = atts.indexOf(curCF.feature1);
-      let y = atts.indexOf(curCF.feature2);
-      for (let j = 0; j < this.correlatedFeatures.length; j++) {
-        if (this.isAnomalous(x[j], y[j], curCF, alg_type)) {
+      let f1i = atts.indexOf(curCF.feature1);
+      let f2i = atts.indexOf(curCF.feature2);
+      for (let j = 0; j < ts[f1i].length; j++) {
+        if (this.isAnomalous(ts[f1i][j], ts[f2i][j], curCF, alg_type)) {
           let s = curCF.feature1 + "-" + curCF.feature2;
           let a = {
             description: s,
@@ -157,14 +172,14 @@ class anomalyDetector {
 //#region Anomaly Detection Utilities
 
 class Point {
-  consrtuctor(x, y) {
+  constructor(x, y) {
     this.x = x;
     this.y = y;
   }
 }
 
 class Line {
-  consrtuctor(a, b) {
+  constructor(a, b) {
     this.a = a;
     this.b = b;
   }
@@ -175,7 +190,7 @@ class Line {
 }
 
 class Circle {
-  consrtuctor(center, radius) {
+  constructor(center, radius) {
     this.center = center;
     this.radius = radius;
   }
@@ -184,7 +199,7 @@ class Circle {
 function dist(a, b) {
   let x2 = (a.x - b.x) * (a.x - b.x);
   let y2 = (a.y - b.y) * (a.y - b.y);
-  return sqrt(x2 + y2);
+  return Math.sqrt(x2 + y2);
 }
 
 function avg(x, size) {
