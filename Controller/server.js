@@ -25,12 +25,14 @@ app.post("/detect", (req, res) => {
   let test = req.files.test_csv_file.data.toString();
   let alg_type = req.body.algorithms;
 
-  // Detecting anomalies:
-  let ad = new anomalyDetector();
-  let anomalies = ad.detectAnomalies(train, test, alg_type);
-
-  // anomalies -> JSON
-  res.send(JSON.stringify(anomalies));
+  if (train && test && alg_type) {
+    // Detecting anomalies:
+    let ad = new anomalyDetector();
+    let anomalies = ad.detectAnomalies(train, test, alg_type);
+    // anomalies -> JSON
+    res.send(JSON.stringify(anomalies));
+  }
+  res.end();
 });
 
 //starting server on port 8080
