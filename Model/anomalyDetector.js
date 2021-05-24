@@ -156,7 +156,7 @@ class anomalyDetector {
   detectAnomalies(train, test, alg_type) {
     this.learnNormal(train, alg_type);
     this.detect(test, alg_type);
-
+    this.anomalies.sort((a, b) => a.time - b.time);
     return this.anomalies;
   }
 }
