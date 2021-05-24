@@ -7,18 +7,16 @@
     <!-- Bootstrap -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="style.css" />
-
-    <script defer src="formValidator.js"></script>
   </head>
 
 
 
   <body>
     <!-- Background image -->
-    <div class="bg-image d-flex justify-content-center align-items-center" style="
-          background-image: url('https://www.bdo.co.il/getmedia/0cb17020-f560-4d24-82f2-e8202a07654a/shutterstock_8.jpg.aspx');
-          height: 100vh;
-        ">
+    <div id="intro" class="view">
+      <div class="full-bg-img">
+
+      </div>
       <!-- Background image -->
 
       <form id="detectForm" action="/detect" method="POST" enctype="multipart/form-data" name="detectForm"
@@ -30,8 +28,12 @@
             <h1>Anomaly Detection Server</h1>
           </div>
 
-          <!-- the result bord-->
-          <div class="item2"><iframe width="500" height="430" id="result" name="result"></iframe></div>
+          <!-- the result board-->
+          <div class="item2">
+            <iframe height=500 width=400 id="result" name="result">
+
+            </iframe>
+          </div>
 
           <!-- Train CSV file title -->
           <div class="item3">
@@ -81,8 +83,6 @@
         <!-- JQuery -->
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"
           integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-
-        <script src="responseHandler.js"></script>
     </div>
     </form>
   </body>

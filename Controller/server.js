@@ -16,25 +16,42 @@ app.get("/", (req, res) => {
 //Post Method for '/detect'
 app.post("/detect", (req, res) => {
   // Extracting train_csv_file, test_csv_file, alg_type.
-  if (req.files.length == 2) {
-    if (req.files.train_csv_file && req.files.test_csv_file && req.body) {
-      let train = req.files.train_csv_file.data.toString();
-      let test = req.files.test_csv_file.data.toString();
-      let alg_type = req.body.algorithms;
+  let train = req.files.train_csv_file.data.toString();
+  let test = req.files.test_csv_file.data.toString();
+  let alg_type = req.body.algorithms;
 
-      if (train && test && alg_type) {
-        // Detecting anomalies:
-        let ad = new anomalyDetector();
-        let anomalies = ad.detectAnomalies(train, test, alg_type);
-        // anomalies -> JSON
-        res.status(200).send(JSON.stringify(anomalies));
-      }
-      res.end();
-    }
-  } else {
-    // No files
-  }
+  // Detecting anomalies:
+  let ad = new anomalyDetector();
+  let anomalies = ad.detectAnomalies(train, test, alg_type);
+  // anomalies -> JSON
+  res.send(buildTable(anomalies));
+  res.end();
 });
+
+function buildTable(data) {
+  let tableStart = `<table class="table table-striped">
+                      <tr class="bg-info">
+                        <th>
+                          Descripition
+                        </th>
+                        <th>
+                          Time
+                        </th>
+                      </tr>
+                      <tbody>`;
+  let tableEnd = `    </tbody>
+                    </table>`;
+  let tableMiddle = ``;
+  for (let i = 0; i < data.length; i++) {
+    let row = `<tr>
+                <td>${data[i].description}</td>
+                <td>${data[i].time}</td>
+               </tr>`;
+    tableMiddle += row;
+  }
+  let table = tableStart + tableMiddle + tableEnd;
+  return table;
+}
 
 //starting server on port 8080
 app.listen(8080, () => console.log("server started at 8080"));
