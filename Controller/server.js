@@ -22,16 +22,20 @@ app.get("/", (req, res) => {
 //Post Method for '/detect'
 app.post("/detect", (req, res) => {
   // Extracting train_csv_file, test_csv_file, alg_type.
-  let train = req.files.train_csv_file.data.toString();
-  let test = req.files.test_csv_file.data.toString();
-  let alg_type = req.body.algorithms;
+  if (req.files && req.files.train_csv_file && req.files.test_csv_file) {
+    let train = req.files.train_csv_file.data.toString();
+    let test = req.files.test_csv_file.data.toString();
+    let alg_type = req.body.algorithms;
 
-  // Detecting anomalies:
-  let ad = new anomalyDetector();
-  let anomalies = ad.detectAnomalies(train, test, alg_type);
-  // anomalies -> JSON
-  console.log(buildTable(anomalies));
-  res.send(buildTable(anomalies));
+    // Detecting anomalies:
+    let ad = new anomalyDetector();
+    let anomalies = ad.detectAnomalies(train, test, alg_type);
+    // anomalies -> JSON
+    console.log(buildTable(anomalies));
+    res.send(buildTable(anomalies));
+    res.end();
+  }
+  res.status(400).send("Please enter two csv files and pick an algorithm");
   res.end();
 });
 
