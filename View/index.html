@@ -9,82 +9,56 @@
     <link rel="stylesheet" href="style.css" />
   </head>
 
-
-
   <body>
     <!-- Background image -->
     <div id="intro" class="view">
-      <div class="full-bg-img">
-
-      </div>
+      <div class="full-bg-img"></div>
       <!-- Background image -->
 
-      <form id="detectForm" action="/detect" method="POST" enctype="multipart/form-data" name="detectForm"
-        target="result">
-
-        <div class="grid-container">
-          <!-- Anomaly Title -->
-          <div class="item1">
-            <h1>Anomaly Detection Server</h1>
-          </div>
-
-          <!-- the result board-->
-          <div class="item2">
-            <iframe height=500 width=400 id="result" name="result">
-
-            </iframe>
-          </div>
-
-          <!-- Train CSV file title -->
-          <div class="item3">
-            <h5>Train CSV file</h5>
-          </div>
-
-          <!-- Train CSV file button -->
-          <div class="item4">
-            <button type="button" class="btn btn-secondary">
-              <input type="file" id="train_csv_file" name="train_csv_file" accept=".xlsx, .xls, .csv"></input>
-            </button>
-          </div>
-
-          <!-- text CSV file title -->
-          <div class="item5">
-            <h5>Test CSV file</h5>
-          </div>
-
-          <!-- text CSV file button -->
-          <div class="item6">
-            <button type="button" class="btn btn-secondary">
-              <input type="file" id="test_csv_file" name="test_csv_file" accept=".xlsx, .xls, .csv"></input>
-            </button>
-          </div>
-
-          <!-- algorithm title -->
-          <div class="item7">
-            <h5>Choose an Algorithm</h5>
-          </div>
-
-          <!-- algorithm button -->
-          <div class="item8">
-            <button type="button" class="btn btn-secondary">
-              <select name="algorithms" id="algorithms">
-                <option value="regression">A Regression-Based Algorithm</option>
-                <option value="hybrid">Hybrid Algorithm</option>
-              </select>
-            </button>
-          </div>
-
-          <!-- detect button -->
-          <div class="item9">
-            <button type="submit" class="btn btn-outline-secondary" class="btn-group" style="width:100%">Detect</button>
+      <div class="container">
+        <div class="row">
+          <div id="primary" class="panel panel-primary">
+            <div class="panel-body">
+              <form id="detectForm" action="/detect" method="POST" enctype="multipart/form-data" name="detectForm"
+                target="result">
+                <br>
+                <h1>Anomaly Detector</h1>
+                <br>
+                <h5>Train CSV file</h5>
+                <button type="button" class="btn btn-outline-danger">
+                  <input type="file" id="train_csv_file" name="train_csv_file" accept=".xlsx, .xls, .csv"></input>
+                </button>
+                <br>
+                <br>
+                <h5>Test CSV file</h5>
+                <button type="button" class="btn btn-outline-danger">
+                  <input type="file" id="test_csv_file" name="test_csv_file" accept=".xlsx, .xls, .csv"></input>
+                </button>
+                <br>
+                <br>
+                <h5>Choose an Algorithm</h5>
+                <button type="button" class="btn-outline-danger">
+                  <select name="algorithms" id="algorithms">
+                    <option value="regression">A Regression-Based Algorithm</option>
+                    <option value="hybrid">Hybrid Algorithm</option>
+                  </select>
+                </button>
+                <button type="submit" id="detect" name="detect" class="btn-outline-danger">Detect</button>
+                <br>
+                <br>
+                <iframe id="result" name="result">
+                  Hello
+                </iframe>
+              </form>
+            </div>
           </div>
         </div>
-
-        <!-- JQuery -->
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js"
-          integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+      </div>
     </div>
-    </form>
+
+    <!-- JQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+      integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
   </body>
 
 </html>
