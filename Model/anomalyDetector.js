@@ -142,7 +142,7 @@ class anomalyDetector {
       let f2i = atts.indexOf(curCF.feature2);
       for (let j = 0; j < ts[f1i].length; j++) {
         if (this.isAnomalous(ts[f1i][j], ts[f2i][j], curCF, alg_type)) {
-          let s = curCF.feature1 + "-" + curCF.feature2;
+          let s = curCF.feature1 + " + " + curCF.feature2;
           let a = {
             description: s,
             time: j + 1,

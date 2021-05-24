@@ -48,8 +48,8 @@ function buildTable(data) {
   let thTime = document.createElement("th");
   thTime.innerHTML = "Time";
 
-  row.appendChild(thTime);
   row.appendChild(thDescripition);
+  row.appendChild(thTime);
 
   for (let i = 0; i < data.length; i++) {
     row = table.insertRow();

@@ -7,21 +7,16 @@ const result = document.getElementById("result");
 form.addEventListener("submit", (err) => {
   let msgs = [];
 
-  if (train.data == null) {
-    msgs.push("There is no train csv uploaded");
+  if (train.files.length == 0) {
+    msgs.push("Train CSV file was not uploaded\n");
   }
 
-  if (test.data == null) {
-    msgs.push("There is no test csv uploaded");
-  }
-
-  if (alg_type.data == null) {
-    msgs.push("Algorithm type was not selected");
+  if (test.files.length == 0) {
+    msgs.push("Test CSV file was not uploaded");
   }
 
   if (msgs.length > 0) {
     err.preventDefault();
-    console.log("Error");
-    result.innerText = msgs.join(",");
+    result.innerText = msgs.join("");
   }
 });
