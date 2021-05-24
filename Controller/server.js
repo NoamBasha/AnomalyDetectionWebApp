@@ -8,6 +8,12 @@ app.use(express.urlencoded({ extended: false }));
 app.use(fileUpload({}));
 app.use(express.static("../View"));
 
+var jsdom = require("jsdom");
+const { JSDOM } = jsdom;
+const { window } = new JSDOM();
+const { document } = new JSDOM("").window;
+global.document = document;
+
 //Get Method for '/'
 app.get("/", (req, res) => {
   res.sendFile("index.html");
@@ -24,33 +30,39 @@ app.post("/detect", (req, res) => {
   let ad = new anomalyDetector();
   let anomalies = ad.detectAnomalies(train, test, alg_type);
   // anomalies -> JSON
+  console.log(buildTable(anomalies));
   res.send(buildTable(anomalies));
   res.end();
 });
 
 function buildTable(data) {
-  let tableStart = `<table class="table table-striped">
-                      <tr class="bg-info">
-                        <th>
-                          Descripition
-                        </th>
-                        <th>
-                          Time
-                        </th>
-                      </tr>
-                      <tbody>`;
-  let tableEnd = `    </tbody>
-                    </table>`;
-  let tableMiddle = ``;
+  let table = document.createElement("table");
+  let row = table.insertRow();
+
+  let thDescripition = document.createElement("th");
+  thDescripition.innerHTML = "Descripition";
+  let thTime = document.createElement("th");
+  thTime.innerHTML = "Time";
+
+  row.appendChild(thTime);
+  row.appendChild(thDescripition);
+
   for (let i = 0; i < data.length; i++) {
-    let row = `<tr>
-                <td>${data[i].description}</td>
-                <td>${data[i].time}</td>
-               </tr>`;
-    tableMiddle += row;
+    row = table.insertRow();
+    let tdDescripition = document.createElement("td");
+    let tdTime = document.createElement("td");
+    tdDescripition.innerHTML = data[i].description;
+    tdTime.innerHTML = data[i].time;
+    row.appendChild(tdDescripition);
+    row.appendChild(tdTime);
   }
-  let table = tableStart + tableMiddle + tableEnd;
-  return table;
+
+  table.setAttribute(
+    "style",
+    "border:5px solid black;border-collapse:collapse;width:100%;padding:8px;text-align:center;font-size:25px;"
+  );
+
+  return table.outerHTML;
 }
 
 //starting server on port 8080
