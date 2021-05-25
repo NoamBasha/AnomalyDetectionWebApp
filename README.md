@@ -3,7 +3,11 @@
 The project is a web application for anomaly detection algorithms, which was developed in JavaScript using node.js and CSS.
 The project is intended for a diverse audience of consumers such as regular users, automated services, etc.
 
-The user opens a browser at localhost:8080, where he selects a regression-based and hybrid-based anomaly detection algorithm.
+The user opens a browser at 
+```
+localhost:8080
+```
+, where he selects a regression-based and hybrid-based anomaly detection algorithm.
 The user selects a valid CSV file, and another file that may contain anomalies.
 By clicking on the upload button the files are transferred to the server.
 The server detects anomalies and the output with the anomalies report appears on the same web page.
@@ -25,3 +29,9 @@ below it is the option to drag a Test CSV file and finally you can choose which 
 After uploading the files and selecting the algorithm, you can send to the server by clicking the 'Detect' button.
 If you want a new detection, drag the new files and click the 'Detect' button again.
 ![](Image/AnomalyDetectionWebApp.PNG)
+
+## Developers
+Noam Basha
+Hanna Sofer
+Adi Ziv
+Noa Miara
