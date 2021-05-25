@@ -37,8 +37,11 @@ async function readContent(inputId) {
 
 $(function () {
   $("#detect").on("click", async function () {
+    console.log("Uploading files...");
     let train_csv_file = await readContent("train_csv_file");
     let test_csv_file = await readContent("test_csv_file");
+    console.log("Finished uploading files!");
+
     let alg_type = $("#algorithms");
 
     let toDetect = {
@@ -55,7 +58,7 @@ $(function () {
         buildTable(JSON.parse(anomalies));
       },
       error: function () {
-        alert("Could not detect");
+        alert("Could not detect!\nMake sure you uploaded coordinated files");
       },
     });
   });

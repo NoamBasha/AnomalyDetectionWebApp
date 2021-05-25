@@ -27,11 +27,13 @@ app.post("/detect", (req, res) => {
 
   // Detecting anomalies:
   let ad = new anomalyDetector();
+  console.log("Detecting...");
   let anomalies = ad.detectAnomalies(train, test, alg_type);
+  console.log("Finished detecting!");
 
   // anomalies -> JSON
   res.send(JSON.stringify(anomalies));
 });
 
 //starting server on port 8080
-app.listen(8080, () => console.log("server started at 8080"));
+app.listen(8080, () => console.log("Server started at 8080"));
