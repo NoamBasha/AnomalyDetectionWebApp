@@ -1,7 +1,6 @@
 # AnomalyDetectionWebApp
 
-The project is a web application for anomaly detection algorithms, 
-which was developed in JavaScript using node.js and CSS.
+The project is a web application for anomaly detection algorithms, which was developed in JavaScript using node.js and CSS.
 The project is intended for a diverse audience of consumers such as regular users, 
 automated services, etc.
 
