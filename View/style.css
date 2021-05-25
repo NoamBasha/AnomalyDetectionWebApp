@@ -50,7 +50,6 @@ button:hover {
 }
 
 #result {
-  border: 5px solid black;
   border-collapse: collapse;
   width: 100%;
   padding: 8px;

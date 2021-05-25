@@ -1,5 +1,8 @@
 function buildTable(data) {
   let table = document.getElementById("result");
+
+  table.innerHTML = "";
+
   let row = table.insertRow();
 
   let thDescripition = document.createElement("th");
