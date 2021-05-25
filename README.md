@@ -13,11 +13,11 @@ This way the user gets back JSON which includes reporting where the anomalies oc
 
 ##architecture
 The project is based on the MVC architecture.
-*View: is an HTML web page, two fields for selecting files and a frame for displaying the output.
+###View: is an HTML web page, two fields for selecting files and a frame for displaying the output.
 The controller instructs the view from where to pull the JSON and it in turn decodes and displays it.
-*Controller: For the http post command to "/ detect" the controller decodes the request and instructs the model to perform the calculation.
+###Controller: For the http post command to "/ detect" the controller decodes the request and instructs the model to perform the calculation.
 In receiving the result as JSON the controller instructs the view to create the desired output.
-*Model: The model implements the algorithm itself, and returns the exception report as JSON.
+###Model: The model implements the algorithm itself, and returns the exception report as JSON.
 
 ##Functionality
 On our web page, Anomaly Detector, the top option was to drag a Train CSV file, 
