@@ -28,6 +28,7 @@ In receiving the result as JSON the controller instructs the view to create the 
 ## Functionality
 On our web page, Anomaly Detector, the top option was to drag a Train CSV file, 
 below it is the option to drag a Test CSV file and finally you can choose which anomaly detection algorithm you want to use.
+
 After uploading the files and selecting the algorithm, you can send to the server by clicking the 'Detect' button.
 If you want a new detection, drag the new files and click the 'Detect' button again.
 ![](Image/AnomalyDetectionWebApp.PNG)
