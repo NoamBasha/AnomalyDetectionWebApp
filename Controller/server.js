@@ -3,16 +3,15 @@ const express = require("express");
 const fileUpload = require("express-fileupload");
 const app = express();
 const anomalyDetector = require("../Model/anomalyDetector");
+const bodyParser = require("body-parser");
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ limit: "50mb", extended: true }));
 
 app.use(express.urlencoded({ extended: false }));
 app.use(fileUpload({}));
 app.use(express.static("../View"));
-
-var jsdom = require("jsdom");
-const { JSDOM } = jsdom;
-const { window } = new JSDOM();
-const { document } = new JSDOM("").window;
-global.document = document;
+//app.use(express.json());
 
 //Get Method for '/'
 app.get("/", (req, res) => {
@@ -22,52 +21,17 @@ app.get("/", (req, res) => {
 //Post Method for '/detect'
 app.post("/detect", (req, res) => {
   // Extracting train_csv_file, test_csv_file, alg_type.
-  if (req.files && req.files.train_csv_file && req.files.test_csv_file) {
-    let train = req.files.train_csv_file.data.toString();
-    let test = req.files.test_csv_file.data.toString();
-    let alg_type = req.body.algorithms;
+  let train = req.body.train_csv_file;
+  let test = req.body.test_csv_file;
+  let alg_type = req.body.alg_type;
 
-    // Detecting anomalies:
-    let ad = new anomalyDetector();
-    let anomalies = ad.detectAnomalies(train, test, alg_type);
-    // anomalies -> JSON
-    console.log(buildTable(anomalies));
-    res.send(buildTable(anomalies));
-    res.end();
-  }
-  res.status(400).send("Please enter two csv files and pick an algorithm");
-  res.end();
+  // Detecting anomalies:
+  let ad = new anomalyDetector();
+  let anomalies = ad.detectAnomalies(train, test, alg_type);
+
+  // anomalies -> JSON
+  res.send(JSON.stringify(anomalies));
 });
-
-function buildTable(data) {
-  let table = document.createElement("table");
-  let row = table.insertRow();
-
-  let thDescripition = document.createElement("th");
-  thDescripition.innerHTML = "Descripition";
-  let thTime = document.createElement("th");
-  thTime.innerHTML = "Time";
-
-  row.appendChild(thDescripition);
-  row.appendChild(thTime);
-
-  for (let i = 0; i < data.length; i++) {
-    row = table.insertRow();
-    let tdDescripition = document.createElement("td");
-    let tdTime = document.createElement("td");
-    tdDescripition.innerHTML = data[i].description;
-    tdTime.innerHTML = data[i].time;
-    row.appendChild(tdDescripition);
-    row.appendChild(tdTime);
-  }
-
-  table.setAttribute(
-    "style",
-    "border:5px solid black;border-collapse:collapse;width:100%;padding:8px;text-align:center;font-size:25px;"
-  );
-
-  return table.outerHTML;
-}
 
 //starting server on port 8080
 app.listen(8080, () => console.log("server started at 8080"));
