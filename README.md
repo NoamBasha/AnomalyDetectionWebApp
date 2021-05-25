@@ -4,8 +4,7 @@ The project is a web application for anomaly detection algorithms, which was dev
 The project is intended for a diverse audience of consumers such as regular users, automated services, etc.
 
 The user opens a browser at 
-```localhost:8080
-```
+``` localhost:8080 ```
 , where he selects a regression-based and hybrid-based anomaly detection algorithm.
 The user selects a valid CSV file, and another file that may contain anomalies.
 By clicking on the upload button the files are transferred to the server.
