@@ -34,7 +34,7 @@ If you want a new detection, drag the new files and click the 'Detect' button ag
 ![](Image/AnomalyDetectionWebApp.PNG)
 
 ## Developers
-Noam Basha
-Hanna Sofer
-Adi Ziv
-Noa Miara
+* Noam Basha
+* Hanna Sofer
+* Adi Ziv
+* Noa Miara
