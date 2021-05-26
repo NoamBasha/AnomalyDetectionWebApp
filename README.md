@@ -16,11 +16,9 @@ In addition, it is possible to send an HTTP POST to the same local address,
 where the command contains the selection of either of the algorithms mentioned above and the two CSV files.
 This way the user recieves a JSON which includes the anomalies report.
 
-* API: Our API is get "/" and post "/detect".
-  The get returns the index.html and the post receives a request and response, 
-  it extracts the train, test and algorithm type files from the toDetect function that we sent as data.
-  For the http post command to "/detect" the controller decodes the request 
-  and instructs the model to perform the calculation.
+## The API:
+* GET / - This path sends back index.html.
+* POST /detect - This path receives request and response, where request is a data contains the train and test files and the algorithm type and the response is JSON of the anomalies
 
 ## Preparation
 After downloading the project from github, please make sure you have installed:
