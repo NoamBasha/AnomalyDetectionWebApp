@@ -39,6 +39,7 @@ below it is the option to select a Test CSV file and finally you can choose whic
 
 After uploading the files and selecting the algorithm, you can send your selections to the server by clicking the 'Detect' button.
 If you want a new detection, select the new files and a new anomaly detection algorithm and click the 'Detect' button again.
+
 ![](Image/AnomalyDetectionWebApp.PNG)
 
 ## Developers
