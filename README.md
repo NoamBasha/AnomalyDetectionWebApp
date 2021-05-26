@@ -16,6 +16,12 @@ In addition, it is possible to send an HTTP POST to the same local address,
 where the command contains the selection of either of the algorithms mentioned above and the two CSV files.
 This way the user recieves a JSON which includes the anomalies report.
 
+* API: Our API is get "/" and post "/detect".
+  The get returns the index.html and the post receives a request and response, 
+  it extracts the train, test and algorithm type files from the toDetect function that we sent as data.
+  For the http post command to "/detect" the controller decodes the request 
+  and instructs the model to perform the calculation.
+
 ## Preparation
 After downloading the project from github, please make sure you have installed:
 * ``` node.js ``` version 14.16.1
@@ -28,8 +34,7 @@ After downloading the project from github, please make sure you have installed:
 The project is based on the MVC architecture.
 * View: is an HTML web page, two fields for selecting files, select button and a frame for displaying the output.
 The controller instructs the view from where to pull the JSON and it in turn decodes and displays it.
-* Controller: For the http post command to "/detect" the controller decodes the request 
-and instructs the model to perform the calculation.
+* Controller: The controller uses the API.
 When receiving the result, the controller convrets it to a JSON and instructs the view to create the desired output.
 * Model: The model implements the algorithm itself, and returns the anomlies report.
 
