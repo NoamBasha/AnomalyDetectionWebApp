@@ -16,7 +16,15 @@ In addition, it is possible to send an HTTP POST to the same local address,
 where the command contains the selection of either of the algorithms mentioned above and the two CSV files.
 This way the user recieves a JSON which includes the anomalies report.
 
-## architecture
+## Preparation
+After downloading the project from github, please make sure you have installed:
+* ``` node.js ``` version 14.16.1
+* ``` express version ``` 4.17.1
+* ``` express-fileupload ``` version 1.2.1
+* ``` smallest-enclosing-circle ``` version 1.0.2
+* ``` bodyparser ``` version 6.14.12
+
+## Architecture
 The project is based on the MVC architecture.
 * View: is an HTML web page, two fields for selecting files, select button and a frame for displaying the output.
 The controller instructs the view from where to pull the JSON and it in turn decodes and displays it.
