@@ -35,11 +35,46 @@ async function readContent(inputId) {
   });
 }
 
+function vaildateForm() {
+  let train = document.getElementById("train_csv_file");
+  let test = document.getElementById("test_csv_file");
+  let result = document.getElementById("result");
+  let msgs = [];
+
+  if (train.files.length == 0) {
+    msgs.push("Train CSV file was not uploaded\n");
+  }
+
+  if (test.files.length == 0) {
+    msgs.push("Test CSV file was not uploaded");
+  }
+
+  if (msgs.length > 0) {
+    result.innerText = msgs.join("");
+    return false;
+  }
+
+  return true;
+}
+
 $(function () {
   $("#detect").on("click", async function () {
+    if (!vaildateForm()) {
+      return;
+    }
+    let detect = document.getElementById("detect");
+    detect.disabled = true;
     console.log("Uploading files...");
-    let train_csv_file = await readContent("train_csv_file");
-    let test_csv_file = await readContent("test_csv_file");
+    let train_csv_file;
+    let test_csv_file;
+    try {
+      train_csv_file = await readContent("train_csv_file");
+      test_csv_file = await readContent("test_csv_file");
+    } catch (e) {
+      detect.disabled = false;
+      alert(e.message);
+      return;
+    }
     console.log("Finished uploading files!");
 
     let alg_type = $("#algorithms");
@@ -55,9 +90,11 @@ $(function () {
       url: "/detect",
       data: toDetect,
       success: function (anomalies) {
+        detect.disabled = false;
         buildTable(JSON.parse(anomalies));
       },
       error: function () {
+        detect.disabled = false;
         alert("Could not detect!\nMake sure you uploaded coordinated files");
       },
     });
