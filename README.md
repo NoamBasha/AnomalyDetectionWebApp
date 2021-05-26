@@ -43,6 +43,12 @@ below it is the option to select a Test CSV file and finally you can choose whic
 After uploading the files and selecting the algorithm, you can send your selections to the server by clicking the 'Detect' button.
 If you want a new detection, select the new files and a new anomaly detection algorithm and click the 'Detect' button again.
 
+## Features
+* Selecting an algorithm - the user may choose out of two algorithms which of the algorithms to use.
+* Validation of the files - the user is allowed to upload only CSV files, and if either of the files are missing the user will recieve an appropriate message.
+* Detect block - the user is not allowed to spam the server. the user must wait for the server to respond for each request whether it was successful or returned an error.
+* Anomalies report - the user will see the anomalies report in a table in the web page.
+
 ![](Image/AnomalyDetectionWebApp.PNG)
 
 ## Developers
