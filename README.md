@@ -57,7 +57,9 @@ If you want a new detection, select new files and a new anomaly detection algori
 
 ## Video
 
-Here you can find a link to our demo video - ![](https://github.com/NoamBasha/AnomalyDetectionWebApp/blob/master/Videos/AnomalyDetectionWebAppDemo.mp4)
+[I'm a relative reference to a repository file](/Videos/AnomalyDetectionWebAppDemo.mp4)
+
+Here you can find a link to our demo video
 
 ## Developers
 * Noam Basha
