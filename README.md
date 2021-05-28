@@ -49,11 +49,11 @@ If you want a new detection, select new files and a new anomaly detection algori
 * Detect block - the user is not allowed to spam the server. the user must wait for the server to respond for each request whether it was successful or returned an error.
 * Anomalies report - the user will see the anomalies report in a table in the web page.
 
-![](Image/AnomalyDetectionWebApp.PNG)
+![](Images/AnomalyDetectionWebApp.PNG)
 
 ## UML
 
-
+![](Images/AnomalyDetectionWebAppUML.jpeg)
 
 ## Video
 
