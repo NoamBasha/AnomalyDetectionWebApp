@@ -51,6 +51,14 @@ If you want a new detection, select new files and a new anomaly detection algori
 
 ![](Image/AnomalyDetectionWebApp.PNG)
 
+## UML
+
+
+
+## Video
+
+
+
 ## Developers
 * Noam Basha
 * Hanna Sofer
