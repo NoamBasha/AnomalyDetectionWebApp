@@ -53,7 +53,7 @@ If you want a new detection, select new files and a new anomaly detection algori
 
 ## UML
 
-![](Images/AnomalyDetectionWebAppUML.jpeg)
+![](Images/AnomalyDetectionWebAppUMLFullVersion.jpeg)
 
 ## Video
 
